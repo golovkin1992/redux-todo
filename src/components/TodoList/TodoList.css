@@ -1,0 +1,14 @@
+
+.item:hover .destroy {
+  display: block;
+}
+
+.todo-list .editing label {
+  display: none;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,48 @@
+
+.clear-completed {
+  background: transparent;
+  position: absolute;
+  right: 0;
+  border: none;
+  font-size: 14px;
+  color: inherit;
+}
+.clear-completed:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.clear-completed:focus {
+  outline: none;
+}
+.footer {
+  color: #777;
+  padding: 10px 15px;
+  height: 20px;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+  margin: 0;
+  display: flex;
+  justify-content: center
+}
+.hidden {
+  display: none;
+}
+.counter {
+  position: absolute;
+  left: 0;
+}
+
+@media (max-width: 560px) and (min-width: 320px) {
+  .wrap {
+    width: 100vw;
+  }
+}
+@media (max-width: 430px) and (min-width: 320px) {
+  .footer {
+    height: 50px;
+  }
+
+  .filters {
+    bottom: 10px;
+  }
+}
