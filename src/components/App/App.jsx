@@ -6,7 +6,7 @@ import Footer from '../Footer';
 import './App.css';
 
 export default class App extends Component {
-  state = {
+  /* / state = {
     arrayTodo: JSON.parse(localStorage.getItem('todo')) || [],
     filter: localStorage.getItem('filter') || 'all',
   };
@@ -30,7 +30,7 @@ export default class App extends Component {
     });
   };
 
-  handleRemoveElement = (id) => {
+  /* /handleRemoveElement = (id) => {
     const { arrayTodo } = this.state;
     const removeIndex = arrayTodo.findIndex(el => el.id === id);
     this.setState({
@@ -95,35 +95,19 @@ export default class App extends Component {
       })),
     });
   };
-
+/ */
   render() {
-    const { arrayTodo, filter } = this.state;
-    const total = arrayTodo.length;
-    const active = arrayTodo.filter(item => !item.isComplete).length;
-    const completed = arrayTodo.filter(item => item.isComplete).length;
-    const filterItems = this.getFilter(filter);
+  //  const { arrayTodo, filter } = this.state;
+    // const total = arrayTodo.length;
+    // const active = arrayTodo.filter(item => !item.isComplete).length;
+    // const completed = arrayTodo.filter(item => item.isComplete).length;
+    // const filterItems = this.getFilter(filter);
     return (
       <>
-        <SelectAllTodo
-          onToggleAllClick={this.handleToggleAllClick}
-          total={total}
-          active={active}
-        />
+        <SelectAllTodo />
         <NewItemTodo onAdd={this.handleAddElement} />
-        <TodoList
-          items={filterItems}
-          onToggle={this.handleToggleElement}
-          onRemove={this.handleRemoveElement}
-          onEdit={this.handleEditElement}
-        />
-        <Footer
-          total={total}
-          active={active}
-          completed={completed}
-          selectedFilter={filter}
-          onHandleClearCompletedClick={this.handleClearCompletedClick}
-          onChangeFilter={this.handleChangeFilter}
-        />
+        <TodoList />
+        <Footer />
       </>
     );
   }

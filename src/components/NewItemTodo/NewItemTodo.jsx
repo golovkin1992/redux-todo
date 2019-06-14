@@ -3,13 +3,13 @@ import './NewItemTodo.css';
 import PropTypes from 'prop-types';
 
 const NewItemTodo = ({
-  onAdd,
+  addTodo,
 }) => {
   const createElement = (e) => {
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         const obj = { id: Date.now(), text: e.target.value, isComplete: false };
-        onAdd(obj);
+        addTodo(obj);
         e.target.value = '';
       }
     }
@@ -35,6 +35,6 @@ const NewItemTodo = ({
 };
 
 NewItemTodo.propTypes = {
-  onAdd: PropTypes.func.isRequired,
+  addTodo: PropTypes.func.isRequired,
 };
 export default NewItemTodo;
