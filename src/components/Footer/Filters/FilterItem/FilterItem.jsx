@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export default class FilterItem extends PureComponent {
-  handleClick = (e) => {
+  handleClick = () => {
     const { onChangeFilter } = this.props;
-    onChangeFilter(e.target.id);
+    onChangeFilter();
   };
 
   render() {

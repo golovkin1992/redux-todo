@@ -17,13 +17,13 @@ export default class TodoListItem extends PureComponent {
 
 
   handleInputClick = () => {
-    const { id, isComplete, onToggle } = this.props;
-    onToggle(id, isComplete);
+    const { id, isComplete, toggleTodo } = this.props;
+    toggleTodo(id, isComplete);
   };
 
   handleBtnDestroyClick = () => {
-    const { id, onRemove } = this.props;
-    onRemove(id);
+    const { id, removeTodo } = this.props;
+    removeTodo(id);
   };
 
 
@@ -40,15 +40,15 @@ export default class TodoListItem extends PureComponent {
   };
 
   handleNewInputEdit = (e) => {
-    const { id, onEdit, onRemove } = this.props;
+    const { id, editTodo, removeTodo } = this.props;
     let { text } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         text = e.target.value;
-        onEdit(id, text);
+        editTodo(id, text);
         this.setState({ isEdit: false });
       } else {
-        onRemove(id);
+        removeTodo(id);
       }
     }
   };
@@ -93,7 +93,7 @@ TodoListItem.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onToggle: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  toggleTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
 };

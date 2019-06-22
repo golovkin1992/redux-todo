@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
-import NewItemTodo from '../NewItemTodo';
-import SelectAllTodo from '../SelectAllTodo';
-import TodoList from '../TodoList';
-import Footer from '../Footer';
+import React from 'react';
+import HeaderContainer from '../Header';
+import FooterContainer from '../Footer';
 import './App.css';
+import TodoListContainer from '../TodoList/TodoListContainer';
 
-export default class App extends Component {
-  /* / state = {
+const App = () => (
+  <>
+    <HeaderContainer />
+    <TodoListContainer />
+    <FooterContainer />
+  </>
+);
+export default App;
+/* / state = {
     arrayTodo: JSON.parse(localStorage.getItem('todo')) || [],
     filter: localStorage.getItem('filter') || 'all',
   };
@@ -96,19 +102,9 @@ export default class App extends Component {
     });
   };
 / */
-  render() {
-  //  const { arrayTodo, filter } = this.state;
-    // const total = arrayTodo.length;
-    // const active = arrayTodo.filter(item => !item.isComplete).length;
-    // const completed = arrayTodo.filter(item => item.isComplete).length;
-    // const filterItems = this.getFilter(filter);
-    return (
-      <>
-        <SelectAllTodo />
-        <NewItemTodo onAdd={this.handleAddElement} />
-        <TodoList />
-        <Footer />
-      </>
-    );
-  }
-}
+
+//  const { arrayTodo, filter } = this.state;
+// const total = arrayTodo.length;
+// const active = arrayTodo.filter(item => !item.isComplete).length;
+// const completed = arrayTodo.filter(item => item.isComplete).length;
+// const filterItems = this.getFilter(filter);

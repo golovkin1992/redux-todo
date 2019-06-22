@@ -1,20 +1,10 @@
-const initialState = {
-  arrayTodo: JSON.parse(localStorage.getItem('todo')) || [],
-};
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'ADD_TODO': {
-      const { obj } = action;
-      const newState = [...state, { obj }];
-      return newState;
-    }
-    case 'REMOVE_TODO': {
-      const newState = state.filter(el => el.id !== action.id);
-      return newState;
-    }
-    default:
-      return state.arrayTodo;
-  }
-};
+import { combineReducers } from 'redux';
+import todos from './todos';
+import visibleFilter from './visibleFilter';
 
-export default reducer;
+const rootReducer = combineReducers({
+  todos,
+  visibleFilter,
+});
+
+export default rootReducer;

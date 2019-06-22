@@ -4,20 +4,20 @@ import './SelectAllTodo.css';
 
 const SelectAllTodo = (
   {
-    onToggleAllClick,
-    total,
-    active,
+    selectAllTodos,
+    // total,
+    // active,
   },
 ) => (
   <label
     className="label-select-all"
-    hidden={total === 0}
+    // hidden={total === 0}
     htmlFor="select-all"
   >
     <input
-      onClick={onToggleAllClick}
-      onChange={() => {}}
-      checked={active === 0}
+      onClick={selectAllTodos}
+     // onChange={() => {}}
+     // checked={active === 0}
       type="checkbox"
       id="select-all"
       className="select-all"
@@ -28,7 +28,7 @@ const SelectAllTodo = (
 export default SelectAllTodo;
 
 SelectAllTodo.propTypes = {
-  onToggleAllClick: PropTypes.func.isRequired,
-  total: PropTypes.number.isRequired,
-  active: PropTypes.number.isRequired,
+  selectAllTodos: PropTypes.func.isRequired,
+  // total: PropTypes.number.isRequired,
+  // active: PropTypes.number.isRequired,
 };
