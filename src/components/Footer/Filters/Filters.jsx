@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import FilterItem from './FilterItem/index';
 import './Filters.css';
 
-
 const Filters = ({
   selectedFilter,
-  onChangeFilter,
+  setFilter,
 }) => {
   const filters = [
     { name: 'all', label: 'All' },
@@ -19,7 +18,7 @@ const Filters = ({
       key={name}
       filterName={name}
       filterLabel={label}
-      onChangeFilter={onChangeFilter}
+      setFilter={setFilter}
       isCurrent={selectedFilter === name}
     />
   ));
@@ -29,5 +28,5 @@ export default Filters;
 
 Filters.propTypes = {
   selectedFilter: PropTypes.string.isRequired,
-  onChangeFilter: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };

@@ -15,15 +15,25 @@ export default class TodoListItem extends PureComponent {
     }
   }
 
-
   handleInputClick = () => {
-    const { id, isComplete, toggleTodo } = this.props;
+    const {
+      id,
+      isComplete,
+      toggleTodo,
+      saveTodo,
+    } = this.props;
     toggleTodo(id, isComplete);
+    saveTodo();
   };
 
   handleBtnDestroyClick = () => {
-    const { id, removeTodo } = this.props;
+    const {
+      id,
+      removeTodo,
+      saveTodo,
+    } = this.props;
     removeTodo(id);
+    saveTodo();
   };
 
 
@@ -40,15 +50,22 @@ export default class TodoListItem extends PureComponent {
   };
 
   handleNewInputEdit = (e) => {
-    const { id, editTodo, removeTodo } = this.props;
+    const {
+      id,
+      editTodo,
+      removeTodo,
+      saveTodo,
+    } = this.props;
     let { text } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         text = e.target.value;
         editTodo(id, text);
         this.setState({ isEdit: false });
+        saveTodo();
       } else {
         removeTodo(id);
+        saveTodo();
       }
     }
   };
@@ -96,4 +113,5 @@ TodoListItem.propTypes = {
   removeTodo: PropTypes.func.isRequired,
   toggleTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
+  saveTodo: PropTypes.func.isRequired,
 };

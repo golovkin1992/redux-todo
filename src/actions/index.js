@@ -12,19 +12,24 @@ const editTodo = (id, text) => ({
   id,
   text,
 });
-const setFilter = filterName => ({
-  type: 'SET_FILTER',
-  filterName,
+const saveTodo = () => ({
+  type: 'SAVE_TODO',
 });
+
 const selectAllTodos = () => ({ type: 'SELECT_ALL_TODOS' });
 const removeCompletedTodos = () => ({ type: 'REMOVE_COMPLETED_TODOS' });
+const setFilter = filter => ({
+  type: 'SET_FILTER',
+  filter,
+});
 
 export {
   removeTodo,
   toggleTodo,
   addTodo,
   editTodo,
-  setFilter,
   selectAllTodos,
   removeCompletedTodos,
+  setFilter,
+  saveTodo,
 };

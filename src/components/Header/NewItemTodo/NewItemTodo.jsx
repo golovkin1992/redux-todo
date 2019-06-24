@@ -1,40 +1,41 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import './NewItemTodo.css';
 import PropTypes from 'prop-types';
 
-const NewItemTodo = ({
-  addTodo,
-}) => {
-  const createElement = (e) => {
+export default class NewItemTodo extends PureComponent {
+  createElement = (e) => {
+    const { addTodo, saveTodo } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         const obj = { id: Date.now(), text: e.target.value, isComplete: false };
         addTodo(obj);
+        saveTodo();
         e.target.value = '';
       }
     }
   };
 
-  const handleBlur = (e) => {
-    createElement(e);
+  handleBlur = (e) => {
+    this.createElement(e);
   };
 
-  const handleKeyDown = (e) => {
-    createElement(e);
+  handleKeyDown = (e) => {
+    this.createElement(e);
   };
 
-
-  return (
-    <input
-      className="header__new-item"
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-      placeholder="What needs to be done?"
-    />
-  );
-};
+  render() {
+    return (
+      <input
+        className="header__new-item"
+        onBlur={this.handleBlur}
+        onKeyDown={this.handleKeyDown}
+        placeholder="What needs to be done?"
+      />
+    );
+  }
+}
 
 NewItemTodo.propTypes = {
   addTodo: PropTypes.func.isRequired,
+  saveTodo: PropTypes.func.isRequired,
 };
-export default NewItemTodo;

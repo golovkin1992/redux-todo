@@ -1,7 +1,6 @@
-const initialState = {
-  arrayTodo: JSON.parse(localStorage.getItem('todo')) || [],
-};
-const reducer = (state = initialState, action) => {
+const initialState = JSON.parse(localStorage.getItem('todo')) || [];
+
+const todos = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_TODO': {
       const { obj: { id, text, isComplete } } = action;
@@ -44,9 +43,13 @@ const reducer = (state = initialState, action) => {
       const newState = state.filter(el => !el.isComplete);
       return newState;
     }
+    case 'SAVE_TODO': {
+      localStorage.setItem('todo', JSON.stringify(state));
+      return state;
+    }
     default:
-      return state.arrayTodo;
+      return state;
   }
 };
 
-export default reducer;
+export default todos;
