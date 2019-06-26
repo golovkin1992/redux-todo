@@ -6,19 +6,25 @@ const Footer = ({
   total,
   completed,
   filter,
-  removeCompletedTodos,
-  setFilter,
+  removeCompletedTodosAction,
+  setFilterAction,
+  saveFilterAction,
 }) => (
   <footer className={`footer ${total === 0 ? ' hidden' : ''}`}>
     <span className="counter">
       {`${total - completed} items left`}
     </span>
-    <Filters selectedFilter={filter} setFilter={setFilter} />
+    <Filters
+      selectedFilter={filter}
+      saveFilterAction={saveFilterAction}
+      setFilterAction={setFilterAction}
+
+    />
     <button
       className="clear-completed"
       type="submit"
       hidden={completed === 0}
-      onClick={removeCompletedTodos}
+      onClick={removeCompletedTodosAction}
     >
       {'Clear completed'}
     </button>
@@ -29,7 +35,8 @@ Footer.propTypes = {
   total: PropTypes.number.isRequired,
   completed: PropTypes.number.isRequired,
   filter: PropTypes.string.isRequired,
-  removeCompletedTodos: PropTypes.func.isRequired,
-  setFilter: PropTypes.func.isRequired,
+  removeCompletedTodosAction: PropTypes.func.isRequired,
+  setFilterAction: PropTypes.func.isRequired,
+  saveFilterAction: PropTypes.func.isRequired,
 };
 export default Footer;

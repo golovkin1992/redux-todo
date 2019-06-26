@@ -6,7 +6,6 @@ import './TodoList.css';
 const TodoList = ({
   todos,
   ...actions
-
 }) => {
   const elements = todos.map(item => (
     <TodoListItem

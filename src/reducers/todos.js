@@ -1,47 +1,44 @@
-const initialState = JSON.parse(localStorage.getItem('todo')) || [];
+const initialState = {
+  todos: JSON.parse(localStorage.getItem('todo')) || [],
+};
 
-const todos = (state = initialState, action) => {
-  switch (action.type) {
+const todos = (state = initialState.todos, action) => {
+  const { type, payload } = action;
+  switch (type) {
     case 'ADD_TODO': {
-      const { obj: { id, text, isComplete } } = action;
-      const newState = [...state, { id, text, isComplete }];
-      return newState;
+      return [...state, payload];
     }
     case 'REMOVE_TODO': {
-      const newState = state.filter(el => el.id !== action.id);
-      return newState;
+      return state.filter(el => el.id !== payload);
     }
     case 'TOGGLE_TODO': {
-      const changeIndex = state.findIndex(el => el.id === action.id);
-      const updatedObj = Object.assign({}, state[changeIndex], { isComplete: !action.isComplete });
-      const newState = [
-        ...state.slice(0, changeIndex),
+      const index = state.findIndex(el => el.id === payload);
+      const updatedObj = Object.assign({}, state[index],
+        { isComplete: !state[index].isComplete });
+      return [
+        ...state.slice(0, index),
         updatedObj,
-        ...state.slice(changeIndex + 1),
+        ...state.slice(index + 1),
       ];
-      return newState;
     }
     case 'EDIT_TODO': {
-      const changeIndex = state.findIndex(el => el.id === action.id);
-      const updatedObj = Object.assign({}, state[changeIndex], { text: action.text });
-      const newState = [
-        ...state.slice(0, changeIndex),
+      const index = state.findIndex(el => el.id === payload.id);
+      const updatedObj = Object.assign({}, state[index], { text: payload.text });
+      return [
+        ...state.slice(0, index),
         updatedObj,
-        ...state.slice(changeIndex + 1),
+        ...state.slice(index + 1),
       ];
-      return newState;
     }
-    case 'SELECT_ALL_TODOS': {
-      const allChecked = state.every(el => el.isComplete);
-      const newState = state.map(el => ({
+    case 'TOGGLE_ALL_TODOS': {
+      const isToggleAll = state.every(el => el.isComplete);
+      return state.map(el => ({
         ...el,
-        isComplete: !allChecked,
+        isComplete: !isToggleAll,
       }));
-      return newState;
     }
     case 'REMOVE_COMPLETED_TODOS': {
-      const newState = state.filter(el => !el.isComplete);
-      return newState;
+      return state.filter(el => !el.isComplete);
     }
     case 'SAVE_TODO': {
       localStorage.setItem('todo', JSON.stringify(state));

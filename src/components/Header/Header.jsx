@@ -1,30 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectAllTodo from './SelectAllTodo';
+import ToggleAllTodos from './ToggleAllTodos';
 import NewItemTodo from './NewItemTodo';
 
 const Header = ({
-  total, active, selectAllTodos, addTodo, saveTodo,
+  total,
+  active,
+  toggleAllTodosAction,
+  addTodoAction,
+  saveTodoAction,
 }) => (
-  <>
-    <SelectAllTodo
-      selectAllTodos={selectAllTodos}
-      saveTodo={saveTodo}
+  <React.Fragment>
+    <ToggleAllTodos
+      toggleAllTodosAction={toggleAllTodosAction}
+      saveTodoAction={saveTodoAction}
       total={total}
-      completed={active}
+      active={active}
     />
     <NewItemTodo
-      addTodo={addTodo}
-      saveTodo={saveTodo}
+      addTodoAction={addTodoAction}
+      saveTodoAction={saveTodoAction}
     />
-  </>
+  </React.Fragment>
 );
 export default Header;
 
 Header.propTypes = {
-  selectAllTodos: PropTypes.func.isRequired,
-  addTodo: PropTypes.func.isRequired,
-  saveTodo: PropTypes.func.isRequired,
+  toggleAllTodosAction: PropTypes.func.isRequired,
+  addTodoAction: PropTypes.func.isRequired,
+  saveTodoAction: PropTypes.func.isRequired,
   total: PropTypes.number.isRequired,
   active: PropTypes.number.isRequired,
 };

@@ -5,10 +5,10 @@ import './App.css';
 import TodoListContainer from '../TodoList/TodoListContainer';
 
 const App = () => (
-  <>
+  <React.Fragment>
     <HeaderContainer />
     <TodoListContainer />
     <FooterContainer />
-  </>
+  </React.Fragment>
 );
 export default App;

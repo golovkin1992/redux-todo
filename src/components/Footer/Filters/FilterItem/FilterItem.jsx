@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 
 export default class FilterItem extends PureComponent {
   handleClick = () => {
-    const { setFilter, filterName } = this.props;
-    setFilter(filterName);
+    const {
+      setFilterAction,
+      filterName,
+      saveFilterAction,
+    } = this.props;
+    setFilterAction(filterName);
+    saveFilterAction(filterName);
   };
 
   render() {
@@ -34,7 +39,8 @@ export default class FilterItem extends PureComponent {
   }
 }
 FilterItem.propTypes = {
-  setFilter: PropTypes.func.isRequired,
+  setFilterAction: PropTypes.func.isRequired,
+  saveFilterAction: PropTypes.func.isRequired,
   isCurrent: PropTypes.bool.isRequired,
   filterName: PropTypes.string.isRequired,
   filterLabel: PropTypes.string.isRequired,

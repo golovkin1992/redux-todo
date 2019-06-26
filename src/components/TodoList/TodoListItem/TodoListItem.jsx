@@ -19,21 +19,21 @@ export default class TodoListItem extends PureComponent {
     const {
       id,
       isComplete,
-      toggleTodo,
-      saveTodo,
+      toggleTodoAction,
+      saveTodoAction,
     } = this.props;
-    toggleTodo(id, isComplete);
-    saveTodo();
+    toggleTodoAction(id, isComplete);
+    saveTodoAction();
   };
 
   handleBtnDestroyClick = () => {
     const {
       id,
-      removeTodo,
-      saveTodo,
+      removeTodoAction,
+      saveTodoAction,
     } = this.props;
-    removeTodo(id);
-    saveTodo();
+    removeTodoAction(id);
+    saveTodoAction();
   };
 
 
@@ -52,20 +52,20 @@ export default class TodoListItem extends PureComponent {
   handleNewInputEdit = (e) => {
     const {
       id,
-      editTodo,
-      removeTodo,
-      saveTodo,
+      editTodoAction,
+      removeTodoAction,
+      saveTodoAction,
     } = this.props;
     let { text } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         text = e.target.value;
-        editTodo(id, text);
+        editTodoAction(id, text);
         this.setState({ isEdit: false });
-        saveTodo();
+        saveTodoAction();
       } else {
-        removeTodo(id);
-        saveTodo();
+        removeTodoAction(id);
+        saveTodoAction();
       }
     }
   };
@@ -110,8 +110,8 @@ TodoListItem.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
-  removeTodo: PropTypes.func.isRequired,
-  toggleTodo: PropTypes.func.isRequired,
-  editTodo: PropTypes.func.isRequired,
-  saveTodo: PropTypes.func.isRequired,
+  removeTodoAction: PropTypes.func.isRequired,
+  toggleTodoAction: PropTypes.func.isRequired,
+  editTodoAction: PropTypes.func.isRequired,
+  saveTodoAction: PropTypes.func.isRequired,
 };
