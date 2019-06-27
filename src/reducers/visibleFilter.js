@@ -2,16 +2,17 @@ const initialState = {
   visibleFilter: localStorage.getItem('filter') || 'all',
 };
 
-const visibleFilter = (state = initialState.visibleFilter, action) => {
+const visibleFilter = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'SET_FILTER': {
+      localStorage.setItem('filter', payload);
       return payload;
     }
-    default:
-      return state;
-    case 'SAVE_FILTER': {
-      localStorage.setItem('filter', payload);
+    default: {
+      if (type === '@@INIT') {
+        return state.visibleFilter;
+      }
       return state;
     }
   }

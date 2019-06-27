@@ -3,13 +3,16 @@ import './NewItemTodo.css';
 import PropTypes from 'prop-types';
 
 export default class NewItemTodo extends PureComponent {
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired,
+  }
+
   createElement = (e) => {
-    const { addTodoAction, saveTodoAction } = this.props;
+    const { addTodo } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         const obj = { id: Date.now(), text: e.target.value, isComplete: false };
-        addTodoAction(obj);
-        saveTodoAction();
+        addTodo(obj);
         e.target.value = '';
       }
     }
@@ -34,8 +37,3 @@ export default class NewItemTodo extends PureComponent {
     );
   }
 }
-
-NewItemTodo.propTypes = {
-  addTodoAction: PropTypes.func.isRequired,
-  saveTodoAction: PropTypes.func.isRequired,
-};

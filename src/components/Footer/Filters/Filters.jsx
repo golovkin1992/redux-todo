@@ -6,16 +6,14 @@ import './Filters.css';
 
 const Filters = ({
   selectedFilter,
-  setFilterAction,
-  saveFilterAction,
+  setFilter,
 }) => {
   const elements = filters.map(({ name, label }) => (
     <FilterItem
       key={name}
       filterName={name}
       filterLabel={label}
-      setFilterAction={setFilterAction}
-      saveFilterAction={saveFilterAction}
+      setFilter={setFilter}
       isCurrent={selectedFilter === name}
     />
   ));
@@ -25,6 +23,5 @@ export default Filters;
 
 Filters.propTypes = {
   selectedFilter: PropTypes.string.isRequired,
-  setFilterAction: PropTypes.func.isRequired,
-  saveFilterAction: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
 };

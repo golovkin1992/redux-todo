@@ -2,14 +2,19 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export default class FilterItem extends PureComponent {
+  static propTypes = {
+    setFilter: PropTypes.func.isRequired,
+    isCurrent: PropTypes.bool.isRequired,
+    filterName: PropTypes.string.isRequired,
+    filterLabel: PropTypes.string.isRequired,
+  }
+
   handleClick = () => {
     const {
-      setFilterAction,
+      setFilter,
       filterName,
-      saveFilterAction,
     } = this.props;
-    setFilterAction(filterName);
-    saveFilterAction(filterName);
+    setFilter(filterName);
   };
 
   render() {
@@ -38,10 +43,3 @@ export default class FilterItem extends PureComponent {
     );
   }
 }
-FilterItem.propTypes = {
-  setFilterAction: PropTypes.func.isRequired,
-  saveFilterAction: PropTypes.func.isRequired,
-  isCurrent: PropTypes.bool.isRequired,
-  filterName: PropTypes.string.isRequired,
-  filterLabel: PropTypes.string.isRequired,
-};

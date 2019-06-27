@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import HeaderContainer from '../Header';
 import FooterContainer from '../Footer';
 import './App.css';
 import TodoListContainer from '../TodoList/TodoListContainer';
 
 const App = () => (
-  <React.Fragment>
+  <Fragment>
     <HeaderContainer />
     <TodoListContainer />
     <FooterContainer />
-  </React.Fragment>
+  </Fragment>
 );
 export default App;

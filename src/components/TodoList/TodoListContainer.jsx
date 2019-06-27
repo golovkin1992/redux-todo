@@ -1,19 +1,25 @@
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
+import { removeTodoAction, toggleTodoAction, editTodoAction } from '../../actions';
 import TodoList from './TodoList';
 
-const getFilter = (array, filter) => {
+const getFilter = (todos, filter) => {
   switch (filter) {
     case 'all':
-      return array;
+      return todos;
     case 'completed':
-      return array.filter(item => item.isComplete);
+      return todos.filter(item => item.isComplete);
     case 'active':
-      return array.filter(item => !item.isComplete);
+      return todos.filter(item => !item.isComplete);
     default:
-      return array;
+      return todos;
   }
 };
 
 const mapStateToProps = state => ({ todos: getFilter(state.todos, state.visibleFilter) });
-export default connect(mapStateToProps, actions)(TodoList);
+export default
+connect(mapStateToProps,
+  {
+    removeTodo: removeTodoAction,
+    toggleTodo: toggleTodoAction,
+    editTodo: editTodoAction,
+  })(TodoList);

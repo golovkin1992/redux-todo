@@ -1,5 +1,5 @@
 
-.item:hover .destroy {
+.item:hover .delete {
   display: block;
 }
 

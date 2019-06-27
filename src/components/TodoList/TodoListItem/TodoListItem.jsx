@@ -8,6 +8,15 @@ export default class TodoListItem extends PureComponent {
 
   inputFocusRef = React.createRef();
 
+  static propTypes = {
+    id: PropTypes.number.isRequired,
+    text: PropTypes.string.isRequired,
+    isComplete: PropTypes.bool.isRequired,
+    removeTodo: PropTypes.func.isRequired,
+    toggleTodo: PropTypes.func.isRequired,
+    editTodo: PropTypes.func.isRequired,
+  }
+
   componentDidUpdate() {
     const { isEdit } = this.state;
     if (isEdit) {
@@ -18,24 +27,18 @@ export default class TodoListItem extends PureComponent {
   handleInputClick = () => {
     const {
       id,
-      isComplete,
-      toggleTodoAction,
-      saveTodoAction,
+      toggleTodo,
     } = this.props;
-    toggleTodoAction(id, isComplete);
-    saveTodoAction();
+    toggleTodo(id);
   };
 
-  handleBtnDestroyClick = () => {
+  handleBtnDeleteClick = () => {
     const {
       id,
-      removeTodoAction,
-      saveTodoAction,
+      removeTodo,
     } = this.props;
-    removeTodoAction(id);
-    saveTodoAction();
+    removeTodo(id);
   };
-
 
   handleLabelDblClick = () => {
     this.setState({ isEdit: true });
@@ -52,20 +55,17 @@ export default class TodoListItem extends PureComponent {
   handleNewInputEdit = (e) => {
     const {
       id,
-      editTodoAction,
-      removeTodoAction,
-      saveTodoAction,
+      editTodo,
+      removeTodo,
     } = this.props;
     let { text } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
         text = e.target.value;
-        editTodoAction(id, text);
+        editTodo(id, text);
         this.setState({ isEdit: false });
-        saveTodoAction();
       } else {
-        removeTodoAction(id);
-        saveTodoAction();
+        removeTodo(id);
       }
     }
   };
@@ -78,10 +78,10 @@ export default class TodoListItem extends PureComponent {
         <div className="content-wrap">
           <input
             onClick={this.handleInputClick}
-            onChange={() => {}}
             className="complete"
             type="checkbox"
             checked={isComplete}
+            onChange={() => {}}
           />
           {isEdit ? (
             <input
@@ -97,21 +97,12 @@ export default class TodoListItem extends PureComponent {
             </span>
           )}
           <button
-            className="destroy"
+            className="delete"
             type="submit"
-            onClick={this.handleBtnDestroyClick}
+            onClick={this.handleBtnDeleteClick}
           />
         </div>
       </li>
     );
   }
 }
-TodoListItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  text: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
-  removeTodoAction: PropTypes.func.isRequired,
-  toggleTodoAction: PropTypes.func.isRequired,
-  editTodoAction: PropTypes.func.isRequired,
-  saveTodoAction: PropTypes.func.isRequired,
-};

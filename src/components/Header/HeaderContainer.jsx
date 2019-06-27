@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addTodoAction, toggleAllTodosAction, saveTodoAction } from '../../actions';
+import { addTodoAction, toggleAllTodosAction } from '../../actions';
 import Header from './Header';
 
 const mapStateToProps = state => ({
@@ -7,4 +7,8 @@ const mapStateToProps = state => ({
   active: state.todos.filter(el => !el.isComplete).length,
 });
 export default
-connect(mapStateToProps, { addTodoAction, toggleAllTodosAction, saveTodoAction })(Header);
+connect(mapStateToProps,
+  {
+    addTodo: addTodoAction,
+    toggleAllTodos: toggleAllTodosAction,
+  })(Header);

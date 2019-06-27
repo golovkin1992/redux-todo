@@ -5,13 +5,17 @@ import './TodoList.css';
 
 const TodoList = ({
   todos,
-  ...actions
+  toggleTodo,
+  editTodo,
+  removeTodo,
 }) => {
   const elements = todos.map(item => (
     <TodoListItem
       key={item.id}
       {...item}
-      {...actions}
+      toggleTodo={toggleTodo}
+      editTodo={editTodo}
+      removeTodo={removeTodo}
     />
 
   ));
@@ -20,6 +24,9 @@ const TodoList = ({
 
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  toggleTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
+  removeTodo: PropTypes.func.isRequired,
 
 };
 

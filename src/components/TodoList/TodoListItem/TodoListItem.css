@@ -9,7 +9,7 @@
 	text-decoration: line-through;
 }
 
-.destroy {
+.delete {
   display: none;
   position: absolute;
   top: 0;
@@ -25,11 +25,11 @@
   outline: none;
   margin-bottom: 11px;
 }
-.destroy:after {
+.delete:after {
   display: block;
   content: "×";
 }
-.destroy:hover {
+.delete:hover {
   color: #af5b5e;
 }
 
