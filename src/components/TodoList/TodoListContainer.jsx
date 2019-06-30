@@ -15,7 +15,12 @@ const getFilter = (todos, filter) => {
   }
 };
 
-const mapStateToProps = state => ({ todos: getFilter(state.todos, state.visibleFilter) });
+const mapStateToProps = (state) => {
+  const { todos: { todos }, visibleFilter: { visibleFilter } } = state;
+  return {
+    todos: getFilter(todos, visibleFilter),
+  };
+};
 export default
 connect(mapStateToProps,
   {

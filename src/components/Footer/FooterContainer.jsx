@@ -2,11 +2,14 @@ import { connect } from 'react-redux';
 import Footer from './Footer';
 import { removeCompletedTodosAction, setFilterAction } from '../../actions';
 
-const mapStateToProps = state => ({
-  filter: state.visibleFilter,
-  total: state.todos.length,
-  completed: state.todos.filter(el => el.isComplete).length,
-});
+const mapStateToProps = (state) => {
+  const { todos: { todos }, visibleFilter: { visibleFilter } } = state;
+  return {
+    filter: visibleFilter,
+    total: todos.length,
+    completed: todos.filter(el => el.isComplete).length,
+  };
+};
 export default
 connect(mapStateToProps,
   {
