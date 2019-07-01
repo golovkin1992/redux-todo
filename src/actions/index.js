@@ -13,7 +13,7 @@ const {
 } = types;
 
 const removeTodoAction = id => ({ type: REMOVE_TODO, payload: id });
-const addTodoAction = obj => ({ type: ADD_TODO, payload: obj });
+const addTodoAction = newItem => ({ type: ADD_TODO, payload: newItem });
 const toggleTodoAction = id => ({ type: TOGGLE_TODO, payload: id });
 const editTodoAction = (id, text) => ({ type: EDIT_TODO, payload: { id, text } });
 const saveTodoAction = () => ({ type: SAVE_TODO });

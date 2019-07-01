@@ -16,7 +16,6 @@ const Footer = ({
     <Filters
       selectedFilter={filter}
       setFilter={setFilter}
-
     />
     <button
       className="clear-completed"
@@ -24,9 +23,8 @@ const Footer = ({
       hidden={completed === 0}
       onClick={removeCompletedTodos}
     >
-
-      Clear completed
-        </button>
+    Clear completed
+    </button>
   </footer>
 );
 

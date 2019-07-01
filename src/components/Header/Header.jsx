@@ -11,7 +11,7 @@ const Header = ({
 }) => (
   <Fragment>
     <ToggleAllTodos
-      onToggleAll={toggleAllTodos}
+      toggleAllTodos={toggleAllTodos}
       total={total}
       active={active}
     />

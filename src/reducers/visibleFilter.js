@@ -10,9 +10,6 @@ export default (state = initialState, action) => {
       return { visibleFilter: payload };
     }
     default: {
-      /* /if (type === '@@INIT') {
-        return state.visibleFilter;
-      }/ */
       return state;
     }
   }

@@ -8,15 +8,6 @@ export default class TodoListItem extends PureComponent {
 
   inputFocusRef = React.createRef();
 
-  static propTypes = {
-    id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-    isComplete: PropTypes.bool.isRequired,
-    removeTodo: PropTypes.func.isRequired,
-    toggleTodo: PropTypes.func.isRequired,
-    editTodo: PropTypes.func.isRequired,
-  }
-
   componentDidUpdate() {
     const { isEdit } = this.state;
     if (isEdit) {
@@ -24,7 +15,7 @@ export default class TodoListItem extends PureComponent {
     }
   }
 
-  handleInputClick = () => {
+  handleInputChange = () => {
     const {
       id,
       toggleTodo,
@@ -77,11 +68,10 @@ export default class TodoListItem extends PureComponent {
       <li className="item">
         <div className="content-wrap">
           <input
-            onClick={this.handleInputClick}
             className="complete"
             type="checkbox"
             checked={isComplete}
-            onChange={() => {}}
+            onChange={this.handleInputChange}
           />
           {isEdit ? (
             <input
@@ -106,3 +96,11 @@ export default class TodoListItem extends PureComponent {
     );
   }
 }
+TodoListItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  isComplete: PropTypes.bool.isRequired,
+  removeTodo: PropTypes.func.isRequired,
+  toggleTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
+};

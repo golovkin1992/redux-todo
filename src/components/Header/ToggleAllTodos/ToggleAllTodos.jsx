@@ -1,37 +1,32 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './ToggleAllTodos.css';
 
-export default class ToggleAllTodos extends PureComponent {
-  static propTypes = {
-    onToggleAll: PropTypes.func.isRequired,
-    total: PropTypes.number.isRequired,
-    active: PropTypes.number.isRequired,
-  }
+const ToggleAllTodos = ({
+  total,
+  active,
+  toggleAllTodos,
+}) => (
+  <label
+    className="label-select-all"
+    hidden={total === 0}
+    htmlFor="select-all"
+  >
+    <input
+      onChange={toggleAllTodos}
+      checked={active === 0}
+      type="checkbox"
+      id="select-all"
+      className="select-all"
+    />
+    <span className="select-all-pseudo" />
+  </label>
+);
 
-  handleClick = () => {
-    const { onToggleAll } = this.props;
-    onToggleAll();
-  }
+ToggleAllTodos.propTypes = {
+  toggleAllTodos: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
+  active: PropTypes.number.isRequired,
+};
 
-  render() {
-    const { total, active } = this.props;
-    return (
-      <label
-        className="label-select-all"
-        hidden={total === 0}
-        htmlFor="select-all"
-      >
-        <input
-          onClick={this.handleClick}
-          onChange={() => {}}
-          checked={active === 0}
-          type="checkbox"
-          id="select-all"
-          className="select-all"
-        />
-        <span className="select-all-pseudo" />
-      </label>
-    );
-  }
-}
+export default ToggleAllTodos;

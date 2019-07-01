@@ -31,9 +31,9 @@ export default (state = initialState, action) => {
       return newState;
     }
     case 'EDIT_TODO': {
-      const { id, text: textEdit } = payload;
+      const { id, text } = payload;
       const index = todos.findIndex(el => el.id === id);
-      const updatedObj = Object.assign({}, todos[index], { text: textEdit });
+      const updatedObj = Object.assign({}, todos[index], { text });
       const newState = {
         todos: [
           ...todos.slice(0, index),
@@ -61,9 +61,6 @@ export default (state = initialState, action) => {
       return newState;
     }
     default: {
-      /* /if (type === '@@INIT') {
-        return state.todos;
-      }/ */
       return state;
     }
   }

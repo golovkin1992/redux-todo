@@ -2,14 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export default class FilterItem extends PureComponent {
-  static propTypes = {
-    setFilter: PropTypes.func.isRequired,
-    isCurrent: PropTypes.bool.isRequired,
-    filterName: PropTypes.string.isRequired,
-    filterLabel: PropTypes.string.isRequired,
-  }
-
-  handleClick = () => {
+  handleInputChange = () => {
     const {
       setFilter,
       filterName,
@@ -27,11 +20,11 @@ export default class FilterItem extends PureComponent {
       <li className="filters__item">
         <input
           className="filter"
-          defaultChecked={isCurrent}
+          checked={isCurrent}
           type="radio"
           name="group"
           id={filterName}
-          onClick={this.handleClick}
+          onChange={this.handleInputChange}
         />
         <label
           htmlFor={filterName}
@@ -43,3 +36,10 @@ export default class FilterItem extends PureComponent {
     );
   }
 }
+
+FilterItem.propTypes = {
+  setFilter: PropTypes.func.isRequired,
+  isCurrent: PropTypes.bool.isRequired,
+  filterName: PropTypes.string.isRequired,
+  filterLabel: PropTypes.string.isRequired,
+};

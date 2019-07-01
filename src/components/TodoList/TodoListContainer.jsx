@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
     todos: getFilter(todos, visibleFilter),
   };
 };
+
 export default
 connect(mapStateToProps,
   {

@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     completed: todos.filter(el => el.isComplete).length,
   };
 };
+
 export default
 connect(mapStateToProps,
   {

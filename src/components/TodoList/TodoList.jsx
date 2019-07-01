@@ -17,17 +17,13 @@ const TodoList = ({
       editTodo={editTodo}
       removeTodo={removeTodo}
     />
-
   ));
   return <ul className="todo-list">{elements}</ul>;
 };
-
 TodoList.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
   toggleTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,
   removeTodo: PropTypes.func.isRequired,
-
 };
-
 export default TodoList;
