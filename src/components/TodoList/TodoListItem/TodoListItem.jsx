@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './TodoListItem.css';
 
-
 export default class TodoListItem extends PureComponent {
   state = { isEdit: false };
 

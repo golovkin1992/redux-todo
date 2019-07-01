@@ -28,5 +28,4 @@ ToggleAllTodos.propTypes = {
   total: PropTypes.number.isRequired,
   active: PropTypes.number.isRequired,
 };
-
 export default ToggleAllTodos;
