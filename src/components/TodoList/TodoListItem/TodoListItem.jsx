@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import './TodoListItem.css';
 
 export default class TodoListItem extends PureComponent {
-  state = { isEdit: false };
+  state = { isEditing: false };
 
   inputFocusRef = React.createRef();
 
   componentDidUpdate() {
-    const { isEdit } = this.state;
-    if (isEdit) {
+    const { isEditing } = this.state;
+    if (isEditing) {
       this.inputFocusRef.current.focus();
     }
   }
@@ -31,29 +31,28 @@ export default class TodoListItem extends PureComponent {
   };
 
   handleLabelDblClick = () => {
-    this.setState({ isEdit: true });
+    this.setState({ isEditing: true });
   };
 
   handleKeyDown = (e) => {
-    this.handleNewInputEdit(e);
+    this.handleInputEdit(e);
   };
 
   handleBlur = (e) => {
-    this.handleNewInputEdit(e);
+    this.handleInputEdit(e);
   };
 
-  handleNewInputEdit = (e) => {
+  handleInputEdit = (e) => {
     const {
       id,
       editTodo,
       removeTodo,
     } = this.props;
-    let { text } = this.props;
     if (!e.keyCode || e.keyCode === 13) {
       if (e.target.value !== '') {
-        text = e.target.value;
+        const text = e.target.value;
         editTodo(id, text);
-        this.setState({ isEdit: false });
+        this.setState({ isEditing: false });
       } else {
         removeTodo(id);
       }
@@ -62,7 +61,7 @@ export default class TodoListItem extends PureComponent {
 
   render() {
     const { text, isComplete } = this.props;
-    const { isEdit } = this.state;
+    const { isEditing } = this.state;
     return (
       <li className="item">
         <div className="content-wrap">
@@ -72,7 +71,7 @@ export default class TodoListItem extends PureComponent {
             checked={isComplete}
             onChange={this.handleInputChange}
           />
-          {isEdit ? (
+          {isEditing ? (
             <input
               className="edit"
               ref={this.inputFocusRef}

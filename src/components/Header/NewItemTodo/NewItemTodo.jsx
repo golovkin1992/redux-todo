@@ -3,16 +3,25 @@ import './NewItemTodo.css';
 import PropTypes from 'prop-types';
 
 export default class NewItemTodo extends PureComponent {
+  state = {
+    text: '',
+  }
+
   createElement = (e) => {
     const { addTodo } = this.props;
+    const { text } = this.state;
     if (!e.keyCode || e.keyCode === 13) {
-      if (e.target.value !== '') {
-        const newItem = { id: Date.now(), text: e.target.value, isComplete: false };
+      if (text !== '') {
+        const newItem = { id: Date.now(), text, isComplete: false };
         addTodo(newItem);
-        e.target.value = '';
+        this.setState({ text: '' });
       }
     }
   };
+
+  handleChange = (e) => {
+    this.setState({ text: e.target.value });
+  }
 
   handleBlur = (e) => {
     this.createElement(e);
@@ -23,12 +32,15 @@ export default class NewItemTodo extends PureComponent {
   };
 
   render() {
+    const { text } = this.state;
     return (
       <input
         className="header__new-item"
         onBlur={this.handleBlur}
         onKeyDown={this.handleKeyDown}
+        onChange={this.handleChange}
         placeholder="What needs to be done?"
+        value={text}
       />
     );
   }
